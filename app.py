@@ -31,8 +31,6 @@ def results():
 def map():
 	start=request.form['start_loc']
 	end=request.form['end_loc']
-	print start
-	print end
 	#start = 'Melbourne, Victoria'
 	#end = 'Sydney, Victoria'
 	locations = pythontrace.enter_route(start, end, 'driving')
