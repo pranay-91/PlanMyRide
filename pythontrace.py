@@ -32,8 +32,3 @@ for polyline in location:
 		url = """https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10&heading=%s"""%((str(curr_point[0])+ ',' + str(curr_point[1]), compassBearing))
 		print url 
 		file.write(url) 
-
-for polyline in location:
-	for coord in polyline:
-		url = """https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10"""%(str(coord[1])+","+str(coord[0]))
-		file.write(url) 
