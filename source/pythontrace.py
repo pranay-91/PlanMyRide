@@ -44,7 +44,7 @@ def enter_route(start,destination,travel_mode):
 		next_point = (points[i+1][1],points[i+1][0])
 			
 		compassBearing = bearing.calculate_initial_compass_bearing(curr_point, next_point)
-		url = """'https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10&heading=%s&key=%s',"""%((str(curr_point[0])+ ',' + str(curr_point[1]), compassBearing,api_key))
+		url = """https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10&heading=%s&key=%s"""%((str(curr_point[0])+ ',' + str(curr_point[1]), compassBearing,api_key))
 		url_list.append(url) 
 
 	return url_list 

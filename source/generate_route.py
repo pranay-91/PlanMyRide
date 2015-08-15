@@ -42,7 +42,7 @@ def java_script_file(start,end,mode):
 
           function imgError(image){
               image.onerror = "";
-              image.src = "http://www.exeterengineering.com/wp-content/uploads/2014/07/potatoes.jpg";
+              image.src = "";
               return true;
           }
 
