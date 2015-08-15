@@ -49,7 +49,34 @@ def enter_route(start,destination,travel_mode):
 
 	return url_list 
 
-neo = datetime.datetime.now()
-results = gmaps.directions('South Morang,Victoria','Kinglake,Victoria',mode='bicycling',departure_time=neo)
-print results[0]['legs'][0]['steps'][3]['distance']
+# points in the google visualisation format convertor
+
+def convert_to_visual_format(start,destination,travel_mode):
+
+	now = datetime.datetime.now()
+	url_list = []
+	directions_result = gmaps.directions(start,
+                                     destination,
+                                     mode=travel_mode,
+                                     departure_time=now)
+
+	overview_polyline = directions_result[0]['overview_polyline']['points']
+
+
+	points = poly.decode(overview_polyline)
+
+	amount_of_point = len(points)
+	
+	path_of_points = []
+
+	for i in range(0,amount_of_point-1):
+
+		coord_dict = {}
+		coord_dict['lat'] = points[i][1]
+		coord_dict['lng'] = points[i][0]
+		path_of_points.append(coord_dict)
+
+	return path_of_points
+
+
 
