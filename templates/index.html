@@ -11,7 +11,7 @@
          * --------------------------------------- */
         h1{
             font-size: 5em;
-            font-family: arial,helvetica;
+            /* font-family: arial,helvetica; */
             color: #fff;
             margin:0;
         }
@@ -21,10 +21,11 @@
 
         /* Centered texts in each section
          * --------------------------------------- */
-        .section{
+        .section, *{
             text-align:center;
+            margin-left: auto;
+            margin-right: auto;
         }
-
 
         /* Overwriting styles for the navigation dots (to place it where we want)
          * --------------------------------------- */
@@ -37,7 +38,7 @@
         $(document).ready(function() {
             $('#fullpage').fullpage({
                     anchors: ['firstPage', 'secondPage', '3rdPage'],
-                    sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+                    sectionsColor: ['#C63D0F', '#1BBC9B', '#078089'],
                     scrollBar: false
             });
         });
@@ -85,14 +86,30 @@
             <div class="intro">
                 <img height="200" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Sinnbild_Radfahrer.svg/500px-Sinnbild_Radfahrer.svg.png"  alt="1"/>
                 <h1>Plan My Ride</h1>
-                <h4>Quickly track and view your cycling route</h4>
+                <h2>Quickly track and view your cycling route</h2>
             </div>
         </div>
+
         <div class="section" id="section1">
-            <div class="slide" id="slide1" data-anchor="slide1">
-                <div class="intro">
-                    <img id="img" onerror="imgError(this);"/>
+            <div class="intro">
+                <div class="Route-entry" style="width:35%">
+                    <label for="start_loc"><h3>Start Address</h3></label>
+                    <br/>
+                    <button type="button" class="btn btn-warning" style="float:left; height:35px; margin-left:-50px;"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span></button>
+                    <input type="text" class="form-control" id="start_loc" size="50" maxlength="50" style="float:right; width:100%;">
                 </div>
+                <div class="Route-entry" style="width:35%; margin-top:55px;">
+                    <label for="end_loc"><h3>Destination Address</h3></label>
+                    <input type="text" class="form-control" id="end_loc" size="50" maxlength="50">
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" onClick="$.fn.fullpage.moveTo(3);" style="width:80px; margin-top:15px;"><h4>Go</h4></button>
+            </div>
+        </div>
+
+        <div class="section" id="section2">
+            <div class="slide" id="slide1" data-anchor="slide1">
+                <img id="img" onerror="imgError(this);"/>
             </div>
 
             <div class="slide" id="slide2" data-anchor="slide2">
@@ -101,13 +118,6 @@
 
             <div class="slide" id="slide3" data-anchor="slide3">
                 <h1>Slide 3</h1>
-            </div>
-
-        </div>
-        <div class="section" id="section2">
-            <div class="intro">
-                <h1>Get Riding!</h1>
-                <p>:-)</p>
             </div>
         </div>
     </div>
