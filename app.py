@@ -20,7 +20,7 @@ def test():
 
 @app.route('/results.html')
 
-def test():
+def results():
 	return render_template('./results.html')
 
 
