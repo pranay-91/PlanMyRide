@@ -96,11 +96,11 @@
                     <label for="start_loc"><h3>Start Address</h3></label>
                     <br/>
                     <button type="button" class="btn btn-warning" style="float:left; height:35px; margin-left:-50px;"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span></button>
-                    <input type="text" class="form-control" id="start_loc" size="50" maxlength="50" style="float:right; width:100%;">
+                    <input type="text" class="form-control" id="start_loc" size="50" maxlength="50" style="float:right; width:100%;" placeholder="Starting Location">
                 </div>
                 <div class="Route-entry" style="width:35%; margin-top:55px;">
                     <label for="end_loc"><h3>Destination Address</h3></label>
-                    <input type="text" class="form-control" id="end_loc" size="50" maxlength="50">
+                    <input type="text" class="form-control" id="end_loc" size="50" maxlength="50" placeholder="Destination Location">
                 </div>
                 <br/>
                 <button type="submit" class="btn btn-primary" onClick="$.fn.fullpage.moveTo(3);" style="width:80px; margin-top:15px;"><h4>Go</h4></button>
@@ -121,6 +121,66 @@
             </div>
         </div>
     </div>
+
+    <!-- Google maps autcomplete JS -->
+    <input id="pac-input" type="text"
+        placeholder="Enter a location">
+    <script>
+      function initMap() {
+        var input1 = /** @type {!HTMLInputElement} */(
+            document.getElementById('start_loc'));
+        var input2 = /** @type {!HTMLInputElement} */(
+            document.getElementById('end_loc'));
+        var types = document.getElementById('type-selector');
+        var autocomplete_start = new google.maps.places.Autocomplete(input1);
+        var autocomplete_end = new google.maps.places.Autocomplete(input2);
+
+
+        autocomplete_start.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete_start.getPlace();
+          if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+          }
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+          
+        });
+
+        autocomplete_end.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete_end.getPlace();
+          if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+          }
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
