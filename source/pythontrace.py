@@ -48,3 +48,8 @@ def enter_route(start,destination,travel_mode):
 		url_list.append(url) 
 
 	return url_list 
+
+neo = datetime.datetime.now()
+results = gmaps.directions('South Morang,Victoria','Kinglake,Victoria',mode='bicycling',departure_time=neo)
+print results[0]['legs'][0]['steps'][3]['distance']
+

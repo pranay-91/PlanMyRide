@@ -74,7 +74,7 @@ def create_html_file(title_name,java_str):
 
 
 title = 'Results'
-java_string = java_script_file('South Morang,Victoria','Kinglake,Victoria','bicycling')
+java_string = java_script_file('Epping,Victoria','Kinglake,Victoria','bicycling')
 
 output_page.write(create_html_file(title,java_string))
 output_page.close()
