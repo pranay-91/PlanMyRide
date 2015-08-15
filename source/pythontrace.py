@@ -5,23 +5,22 @@ import poly
 import bearing
 import datetime
 
-start = "South Morang, Victoria"
-finish = "Kinglake, Victoria"
+
 
 api_key = 'AIzaSyDFnxLSssSOW2Z8dyWmlTk_HJOlzY4aNtc'
 
 gmaps = googlemaps.Client(key=api_key)
-"""
-url = 'http://maps.googleapis.com/maps/api/directions/json?%s' % urlencode((
-            ('origin', start),
-            ('destination', finish)
- ))
-ur = urllib.urlopen(url)
-result = json.load(ur)
-"""
 
 
+#Returns elevation in meters
 
+def elevation(lat, lon):
+	elevation = gmaps.elevation((lat, lon))
+	return elevation[0]['elevation']
+
+
+#Returns a list of urls that we use to
+#create our sequences of images 
 def enter_route(start,destination,travel_mode):
 
 	now = datetime.datetime.now()
@@ -35,9 +34,7 @@ def enter_route(start,destination,travel_mode):
 	overview_polyline = directions_result[0]['overview_polyline']['points']
 
 
-
 	points = poly.decode(overview_polyline)
-	file = open("test.txt", "w")
 
 	amount_of_point = len(points)
 
@@ -49,11 +46,5 @@ def enter_route(start,destination,travel_mode):
 		compassBearing = bearing.calculate_initial_compass_bearing(curr_point, next_point)
 		url = """'https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10&heading=%s&key=%s',"""%((str(curr_point[0])+ ',' + str(curr_point[1]), compassBearing,api_key))
 		url_list.append(url) 
-		file.write(url)
 
 	return url_list 
-
-
-print enter_route(start,finish,'bicycling')
-
-#print directions_result 
