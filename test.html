@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+      <title>change picture</title>
+      <script type = "text/javascript">
+          function displayNextImage() {
+              x = (x === images.length - 1) ? 0 : x + 1;
+              document.getElementById("img").src = images[x];
+          }
+
+          function displayPreviousImage() {
+              x = (x <= 0) ? images.length - 1 : x - 1;
+              document.getElementById("img").src = images[x];
+          }
+
+          function startTimer() {
+              setInterval(displayNextImage, 100);
+          }
+
+          var images = [
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82267,144.96397&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.8226,144.96389&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82254,144.964&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82251,144.96407&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82248,144.96414&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82244,144.96426&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.8223,144.9646&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82213,144.96505&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82198,144.9654&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82181,144.96573&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82176,144.96585&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82163,144.96616&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82133,144.96686&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82122,144.96711&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82117,144.96722&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82095,144.96773&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82086,144.96799&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82077,144.96833&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82074,144.96855&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82071,144.96889&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.8207,144.969&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82069,144.96908&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82068,144.96917&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82067,144.96926&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82067,144.9693&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82071,144.96938&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82074,144.96977&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82082,144.97032&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82106,144.97136&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82124,144.97212&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82131,144.9724&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82142,144.97291&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82157,144.97354&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82163,144.97375&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82165,144.97383&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82165,144.97395&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.8218,144.9743&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82186,144.97447&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82195,144.97463&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82205,144.97481&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82214,144.97495&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82223,144.9751&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82232,144.97521&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82241,144.97532&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82297,144.97596&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82305,144.9761&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.8231,144.97622&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82313,144.97632&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82314,144.97641&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82316,144.97652&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82318,144.97692&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82322,144.97747&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82325,144.97791&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82326,144.97808&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82325,144.97819&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82325,144.97824&fov=90&pitch=10",
+              "https://maps.googleapis.com/maps/api/streetview?size=600x600&location=-37.82326,144.97833&fov=90&pitch=10"
+          ];
+          var x = -1;
+          //
+          // $.get('test.txt', function(data){
+          //     images = data.split(/\n/);
+          // });
+
+          // images[0] = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=-37.82267,144.96397&fov=90&pitch=10";
+          // images[1] = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=-37.8226,144.96389&fov=90&pitch=10";
+          // images[2] = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=-37.82254,144.964&fov=90&pitch=10";
+      </script>
+   </head>
+
+   <body onload = "startTimer()">
+       <img id="img" src="startpicture.jpg"/>
+       <button type="button" onclick="displayPreviousImage()">Previous</button>
+       <button type="button" onclick="displayNextImage()">Next</button>
+   </body>
+</html>
