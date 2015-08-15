@@ -12,6 +12,12 @@ app = Flask(__name__, template_folder=tmpl_dir)
 def home():
 	return render_template('./index.html')
 
+
+@app.route('/test.html')
+
+def test():
+	return render_template('./test.html')
+
 @app.route('/results.html')
 
 def test():
