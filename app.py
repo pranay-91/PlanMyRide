@@ -1,27 +1,45 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request, jsonify
 
 import os
+import json
+import sys
+sys.path.append( 'source' )
+import pythontrace
+
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+
 
 
 app = Flask(__name__, template_folder=tmpl_dir)
 
 @app.route('/')
-@app.route('/index.html')
+@app.route('/index')
 
 def home():
 	return render_template('./index.html')
 
 
-@app.route('/test.html')
-
+@app.route('/test')
 def test():
 	return render_template('./test.html')
 
-@app.route('/results.html')
-
+@app.route('/results')
 def results():
 	return render_template('./results.html')
+
+@app.route('/map', methods=['POST'])
+def map():
+	start=request.form['start_loc']
+	end=request.form['end_loc']
+	print start
+	print end
+	#start = 'Melbourne, Victoria'
+	#end = 'Sydney, Victoria'
+	locations = pythontrace.enter_route(start, end, 'driving')
+	return render_template('results.html', locations=locations)
+	#if request.method == "GET":
+#		return redirect(url_for('home'))
+
 
 
 if __name__ == '__main__':
