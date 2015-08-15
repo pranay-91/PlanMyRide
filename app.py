@@ -23,12 +23,14 @@ def home():
 def test():
 	return render_template('./test.html')
 
-@app.route('/results')
-def results():
-	return render_template('./results.html')
+#@app.route('/results')
+#def results():
+#	return render_template('./results.html')
 
-@app.route('/map', methods=['POST'])
+@app.route('/map', methods=['POST', 'GET'])
 def map():
+	if request.method == "GET":
+		return redirect(url_for('home'))
 	start=request.form['start_loc']
 	end=request.form['end_loc']
 	#start = 'Melbourne, Victoria'

@@ -110,11 +110,11 @@
                     <label for="start_loc"><h3>Start Address</h3></label>
                     <br/>
                     <button type="button" class="btn btn-warning" onClick="getLocation()" style="float:left; height:35px; margin-left:-50px;"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span></button>
-                    <input type="text" class="form-control" name="start_loc" id="start_loc" size="50" maxlength="50" style="float:right; width:100%;" placeholder="Starting Location">
+                    <input type="text" class="form-control" name="start_loc" id="start_loc" size="50" maxlength="50" style="float:right; width:100%;" placeholder="Starting Location" required="true">
                 </div>
                 <div class="Route-entry" style="width:35%; margin-top:55px;">
                     <label for="end_loc"><h3>Destination Address</h3></label>
-                    <input type="text" class="form-control" name="end_loc" id="end_loc" size="50" maxlength="50" placeholder="Destination Location">
+                    <input type="text" class="form-control" name="end_loc" id="end_loc" size="50" maxlength="50" placeholder="Destination Location" required="true">
                 </div>
                 <br/>
                 <button type="submit" class="btn btn-primary" onClick="$.fn.fullpage.moveTo(3);" style="width:80px; margin-top:15px;"><h4>Go</h4></button>
