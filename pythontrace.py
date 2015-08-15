@@ -2,8 +2,8 @@ import json, urllib
 from urllib import urlencode
 import googlemaps
 import poly
-start = "Bridgewater, Sa, Australia"
-finish = "Stirling, SA, Australia"
+start = "Southbank, Victoria"
+finish = "Richmond, Victoria"
 
 url = 'http://maps.googleapis.com/maps/api/directions/json?%s' % urlencode((
             ('origin', start),
@@ -23,7 +23,7 @@ for i in range (0, len (result['routes'][0]['legs'][0]['steps'])):
     
 
 for polyline in location:
-
 	for coord in polyline:
 		url = """https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10"""%(str(coord[1])+","+str(coord[0]))
 		print url 
+
