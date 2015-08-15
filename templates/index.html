@@ -150,7 +150,6 @@
 
 
         autocomplete_start.addListener('place_changed', function() {
-          infowindow.close();
           marker.setVisible(false);
           var place = autocomplete_start.getPlace();
           if (!place.geometry) {
@@ -164,14 +163,10 @@
               (place.address_components[1] && place.address_components[1].short_name || ''),
               (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
-          }
-
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-          
+          }          
         });
 
         autocomplete_end.addListener('place_changed', function() {
-          infowindow.close();
           marker.setVisible(false);
           var place = autocomplete_end.getPlace();
           if (!place.geometry) {
@@ -186,9 +181,6 @@
               (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
           }
-
-          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-
         });
       }
     </script>
