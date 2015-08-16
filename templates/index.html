@@ -106,8 +106,8 @@
           function startTimer() {
               setInterval(displayNextImage, 500);
           }
-
-          images = [
+          images = {{ locations|tojson }}||[];
+          demo_images = [
           'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=-37.65135,145.0891&fov=90&pitch=10&heading=275.679096974&key=AIzaSyDFnxLSssSOW2Z8dyWmlTk_HJOlzY4aNtc',
           'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=-37.65125,145.08783&fov=90&pitch=10&heading=48.833771207&key=AIzaSyDFnxLSssSOW2Z8dyWmlTk_HJOlzY4aNtc',
           'https://maps.googleapis.com/maps/api/streetview?size=800x800&location=-37.65044,145.089&fov=90&pitch=10&heading=36.4851588707&key=AIzaSyDFnxLSssSOW2Z8dyWmlTk_HJOlzY4aNtc',
@@ -483,6 +483,10 @@
           }
 
           function initMap() {
+              if(images.length < 1) {
+                images = demo_images
+              }
+
 
               var loc_index = images[x].indexOf("location=") + 9;
               var lng_start_index = images[x].indexOf(",");
@@ -574,7 +578,7 @@
 
         <div class="section" id="section1">
             <div class="intro">
-              <form action="/map" method="post">
+              <form action="#3rdPage" method="post">
                 <div class="Route-entry" style="width:35%">
                     <label for="start_loc"><h3>Start Address</h3></label>
                     <br/>
@@ -586,7 +590,7 @@
                     <input type="text" class="form-control" name="end_loc" id="end_loc" size="50" maxlength="50" placeholder="Destination Location" required="true">
                 </div>
                 <br/>
-                <button type="submit" class="btn btn-primary" onClick="$.fn.fullpage.moveTo(3);" style="width:80px; margin-top:15px;"><h4>Go</h4></button>
+                <button type="submit" class="btn btn-primary" style="width:80px; margin-top:15px;"><h4>Go</h4></button>
               </form>
             </div>
         </div>
