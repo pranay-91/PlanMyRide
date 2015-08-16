@@ -40,7 +40,7 @@
         }
 
         #img {
-            -webkit-transform: scale(2);
+            -webkit-transform: scale(1.1);
         }
 
         #map {
@@ -588,11 +588,12 @@
                 <h1><strike>PIMP</strike> Plan My Ride</h1>
                 <h2>Quickly track and view your cycling route</h2>
                 <a href="#secondPage"><img src="http://www.clipartbest.com/cliparts/yio/ekq/yioekqdyT.png" height="100" style="margin-top: 100px;" /></a>
+
             </div>
         </div>
 
         <div class="section" id="section1">
-            <div class="intro">
+            <div class="slide" id="slide1" data-anchor="slide1">
               <form action="#3rdPage" method="post">
                 <div class="Route-entry" style="width:35%">
                     <label for="start_loc"><h3>Start Address</h3></label>
@@ -617,22 +618,19 @@
                 <button type="submit" class="btn btn-primary" style="width:80px; margin-top:15px;"><h4>Go</h4></button>
               </form>
             </div>
-        </div>
-
-        <div class="section" id="section2">
-            <div class="slide" id="slide1" data-anchor="slide1">
-                <div class="col-md-6">
-                    <img id="img" onerror="imgError(this);" width="100%" height="100%"/>
-                </div>
-                <div id="map"></div>
-            </div>
 
             <div class="slide" id="slide2" data-anchor="slide2">
                 <h1>Slide 2</h1>
             </div>
 
-            <div class="slide" id="slide3" data-anchor="slide3">
-                <h1>Slide 3</h1>
+        </div>
+
+        <div class="section" id="section2">
+            <div class="slide" id="slide1" data-anchor="slide1">
+                <div class="col-xs-6">
+                    <img id="img" onError="imgError(this);" style="width:100%; height:100%;" />
+                </div>
+                <div id="map"></div>
             </div>
         </div>
     </div>
