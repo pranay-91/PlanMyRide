@@ -61,6 +61,8 @@
           var marker;
           var flightPlanCoordinates = [];
           var flightPath;
+          var firstRun = true;
+
           function displayNextImage() {
               x = (x === images.length - 1) ? 0 : x + 1;
               document.getElementById("img").src = images[x];
@@ -76,24 +78,31 @@
               // marker.setPosition(parseInt(latp), parseInt(lngp));
               marker.setPosition(pos);
               map.setCenter(pos);
-              flightPlanCoordinates.push(pos);
 
-              flightPath = new google.maps.Polyline({
-                      path: flightPlanCoordinates,
-                      geodesic: true,
-                      strokeColor: '#FF0000',
-                      strokeOpacity: 0.8,
-                      strokeWeight: 5
-              });
+              if (x < images.length -1 && firstRun == true) {
+                  flightPlanCoordinates.push(pos);
 
-              flightPath.setMap(map);
+                  flightPath = new google.maps.Polyline({
+                          path: flightPlanCoordinates,
+                          geodesic: true,
+                          strokeColor: '#FF0000',
+                          strokeOpacity: 0.8,
+                          strokeWeight: 5
+                  });
+
+                  flightPath.setMap(map);
+              }
+              else {
+                  firstRun = false; 
+              }
+
 
               // alert("lat:" + parseInt(latp) + " lng:" + parseInt(lngp));
           }
 
           function imgError(image){
-              image.onerror = "";
-              image.src = "http://www.exeterengineering.com/wp-content/uploads/2014/07/potatoes.jpg";
+              images[x].onerror = "";
+              images[x].src = "";
               return true;
           }
 
