@@ -78,5 +78,30 @@ def convert_to_visual_format(start,destination,travel_mode):
 
 	return path_of_points
 
+def get_elevation_points(start,destination,travel_mode):
+
+	now = datetime.datetime.now()
+	url_list = []
+	directions_result = gmaps.directions(start,
+                                     destination,
+                                     mode=travel_mode,
+                                     departure_time=now)
+
+	overview_polyline = directions_result[0]['overview_polyline']['points']
+
+
+	points = poly.decode(overview_polyline)
+	print len(points)
+	elevation_points = [] 
+	for i in range(0,len(points)):
+		print elevation_points
+		elevation_points.append(elevation(points[i+100][1],points[i+100][0]))
+
+
+
+
+
+
+
 
 
