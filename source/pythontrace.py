@@ -48,7 +48,7 @@ def enter_route(start,destination,travel_mode,flag=False):
 			compassBearing = bearing.calculate_initial_compass_bearing(curr_point, next_point)
 			url = """https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10&heading=%s&key=%s"""%((str(curr_point[0])+ ',' + str(curr_point[1]), compassBearing,api_key))
 			url_list.append(url)
-	else 
+	else:
 
 		for step in dic_of_points:
 
