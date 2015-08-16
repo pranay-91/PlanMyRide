@@ -21,7 +21,7 @@ def elevation(lat, lon):
 
 #Returns a list of urls that we use to
 #create our sequences of images 
-def enter_route(start,destination,travel_mode):
+def enter_route(start,destination,travel_mode,flag=False):
 
 	now = datetime.datetime.now()
 	url_list = []
@@ -36,9 +36,8 @@ def enter_route(start,destination,travel_mode):
 
 	dic_of_points = directions_result[0]['legs'][0]['steps']
 
-	for step in dic_of_points:
+	if flag:
 
-		points = poly.decode(step['polyline']['points'])
 		amount_of_point = len(points)
 
 		for i in range(0,amount_of_point-1):
@@ -48,7 +47,22 @@ def enter_route(start,destination,travel_mode):
 			
 			compassBearing = bearing.calculate_initial_compass_bearing(curr_point, next_point)
 			url = """https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10&heading=%s&key=%s"""%((str(curr_point[0])+ ',' + str(curr_point[1]), compassBearing,api_key))
-			url_list.append(url) 
+			url_list.append(url)
+	else 
+
+		for step in dic_of_points:
+
+			points = poly.decode(step['polyline']['points'])
+			amount_of_point = len(points)
+
+			for i in range(0,amount_of_point-1):
+
+				curr_point = (points[i][1],points[i][0])
+				next_point = (points[i+1][1],points[i+1][0])
+			
+				compassBearing = bearing.calculate_initial_compass_bearing(curr_point, next_point)
+				url = """https://maps.googleapis.com/maps/api/streetview?size=400x400&location=%s&fov=90&pitch=10&heading=%s&key=%s"""%((str(curr_point[0])+ ',' + str(curr_point[1]), compassBearing,api_key))
+				url_list.append(url) 
 
 	return url_list 
 
