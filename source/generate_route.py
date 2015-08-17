@@ -1,11 +1,20 @@
 import pythontrace
+import urllib2
+import json 
+import datetime
+import googlemaps
+import poly
 
 
-output_page = open('../templates/results.html','w')
-testing_page = open('../templates/testing.html','w')
+#output_page = open('../templates/results.html','w')
+#testing_page = open('../templates/testing.html','w')
 html_str = ''
 java_str = ''
 IMAGE_INTERVAL = 500
+
+api_key = 'AIzaSyDFnxLSssSOW2Z8dyWmlTk_HJOlzY4aNtc'
+
+gmaps = googlemaps.Client(key=api_key)
 
 
 
@@ -140,18 +149,38 @@ def create_visual_elevation(route_name,points):
 	
 	return elevation_file
 
+def generate_url_for_elevation(start,end,mode_to):
+
+  now = datetime.datetime.now()
+  directions_result = gmaps.directions(start,
+                                     end,
+                                     mode=str(mode_to),
+                                     departure_time=now)
+  locations = directions_result[0]['overview_polyline']['points']
+  return """https://maps.googleapis.com/maps/api/elevation/json?locations=enc:%s&key=%s"""%(locations,api_key)
+
+
+def json_to_elevation(url):
+
+  response = urllib2.urlopen(str(url))
+  data = json.load(response)
+  elevation = []
+  for i in data['results']:
+    elevation.append(i['elevation'])
+
+  return elevation
 
 
 
 
-title = 'Results'
-java_string = java_script_file('Epping,Victoria','Kinglake,Victoria','bicycling')
 
-output_page.write(create_html_file(title,java_string))
-output_page.close()
-path = pythontrace.convert_to_visual_format('Epping,Victoria','Kinglake,Victoria','bicycling')
 
-path_to = pythontrace.get_elevation_points('Epping,Victoria','Kinglake,Victoria','bicycling')
-print path_to
+
+
+url = generate_url_for_elevation('Epping,Victoria','Kinglake,Victoria','bicycling')
+print url
+print json_to_elevation(url)
+
+
 
 

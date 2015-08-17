@@ -6,6 +6,7 @@ import sys
 
 sys.path.append( 'source' )
 import pythontrace
+import generate_route
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 
@@ -16,15 +17,22 @@ app = Flask(__name__, template_folder=tmpl_dir)
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/index', methods=['POST', 'GET'])
 
+
+
 def home():
 	if request.method == "GET":
 		locations = []
-		return render_template('./index.html', locations=locations)
+		elevations = []
+		return render_template('./index.html', locations=locations, elevations=elevations)
 
 	start=request.form['start_loc']
 	end=request.form['end_loc']
 	locations = pythontrace.enter_route(start, end, 'driving')
-	return render_template('./index.html', locations=locations)
+	elevations = generate_route.json_to_elevation(generate_route.generate_url_for_elevation(start,end,'driving'))
+
+
+	return render_template('./index.html', locations=locations,elevations=elevations)
+
 
 
 @app.route('/test')
@@ -34,17 +42,6 @@ def test():
 #@app.route('/results')
 #def results():
 #	return render_template('./results.html')
-
-@app.route('/map', methods=['POST', 'GET'])
-def map():
-	if request.method == "GET":
-		return redirect(url_for('home'))
-	start=request.form['start_loc']
-	end=request.form['end_loc']
-	#start = 'Melbourne, Victoria'
-	#end = 'Sydney, Victoria'
-	locations = pythontrace.enter_route(start, end, 'driving')
-	return render_template('results.html', locations=locations)
 	#if request.method == "GET":
 #		return redirect(url_for('home'))
 

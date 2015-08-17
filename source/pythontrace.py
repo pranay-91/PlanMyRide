@@ -4,6 +4,9 @@ import googlemaps
 import poly
 import bearing
 import datetime
+import urllib2
+import json 
+
 
 
 
@@ -11,12 +14,6 @@ api_key = 'AIzaSyDFnxLSssSOW2Z8dyWmlTk_HJOlzY4aNtc'
 
 gmaps = googlemaps.Client(key=api_key)
 
-
-#Returns elevation in meters
-
-def elevation(lat, lon):
-	elevation = gmaps.elevation((lat, lon))
-	return elevation[0]['elevation']
 
 
 #Returns a list of urls that we use to
@@ -96,10 +93,16 @@ def convert_to_visual_format(start,destination,travel_mode):
 	return path_of_points
 
 
+now = datetime.datetime.now()
+
+directions_result = gmaps.directions('Richmond,Vic',
+                                     'Melbourne,Vic',
+                                     mode='bicycling',
+                                     departure_time=now)
 
 
 
-
+overview_polyline = directions_result[0]['overview_polyline']['points']
 
 
 

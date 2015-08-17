@@ -4,7 +4,15 @@
 
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="static/css/jquery.fullPage.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+​
+    
 
     <style>
         /* Style for our header texts
@@ -51,8 +59,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#fullpage').fullpage({
-                    anchors: ['firstPage', 'secondPage', '3rdPage'],
-                    sectionsColor: ['#C63D0F', '#1BBC9B', '#078089'],
+                    anchors: ['firstPage', 'secondPage', '3rdPage', '4rthPage'],
+                    sectionsColor: ['#C63D0F', '#1BBC9B', '#078089', '#FFFFFF'],
                     scrollBar: false
             });
         });
@@ -578,6 +586,62 @@
 
     </script>
 
+    <script type="text/javascript">$(function () {
+                $('#container').highcharts({
+                  
+                  chart: {
+                      type: 'area'
+                  },
+                  title: {
+                      text: null
+                  },
+                  subtitle: {
+                      text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">' +
+                        'thebulletin.metapress.com</a>'
+                  },
+                  xAxis: {
+                      allowDecimals: true,
+                    labels: {
+
+                      formatter: function () {
+                          return this.value; // clean, unformatted number for year
+                      }
+                  }
+              },
+                yAxis: {
+                    title: {
+                        text: 'Elevation'
+                  },
+                  labels: {
+                    
+            }
+        },
+        tooltip: {
+            pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>Distance {point.x}'
+        },
+        plotOptions: {
+            area: {
+                pointStart: 0,
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [ {
+            name: 'Elevation Data',
+            data: {{elevations|tojson}}||[]
+            }]
+
+        });
+  });</script>
+
 </head>
 
 <body onload = "startTimer()">
@@ -638,6 +702,10 @@
                 </div>
                 <div id="map"></div>
             </div>
+        </div>
+
+        <div class="section" id="section3">
+        <div id="container" style="min-width: 310px; height: 400px; m argin: 0 auto"></div>
         </div>
     </div>
 
